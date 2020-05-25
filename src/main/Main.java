@@ -8,6 +8,7 @@ import service.CSVService;
 import service.ShowService;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,8 @@ public class Main {
 
         csvService.writeInAuditFile("Showing all shows to the user.");
         showService.showAllShows();
+
+        clients = csvService.getClients();
 
         double beforePurchase = clients.get(0).getMoney();
         boolean b = showService.buyTicket(clients.get(0));
@@ -87,7 +90,41 @@ public class Main {
             System.out.println("Host money was " + beforePurchase + " and now is " + hosts.get(0).getMoney());
         }
 
-        
+        beforePurchase = clients.get(0).getMoney();
+        b = showService.cancelTicket(clients.get(0));
+        csvService.writeInAuditFile("Client with id 0 is trying to cancel ticket");
+        if(!b){
+            System.out.println("Ticket may be too old. Refund unsuccesful");
+        }
+        else {
+            System.out.print(clients.get(0).getFirstName() + " " + clients.get(0).getFamilyName() + " "
+                    + "refunded succesfully a ticket. ");
+
+            System.out.println("Client money was " + beforePurchase + " and now is " + clients.get(0).getMoney());
+        }
+
+        beforePurchase = hosts.get(0).getMoney();
+        List<Double> clMoney = new ArrayList<>();
+        for (Client c : clients){
+            clMoney.add(c.getMoney());
+        }
+        b = showService.cancelShow(hosts.get(0));
+        csvService.writeInAuditFile("Host with id 0 is trying to cancel an event");
+        if(!b){
+            System.out.println("Event may be too old. Cancellation unsuccesful");
+        }
+        else {
+            System.out.print(hosts.get(0).getFirstName() + " " + hosts.get(0).getFamilyName() + " "
+                    + "cancelled succesfuly a show. ");
+            System.out.println("Host money was " + beforePurchase + " and now is " + hosts.get(0).getMoney());
+
+            System.out.println("Clients money before cancelling the show: ");
+            clMoney.forEach(System.out::println);
+
+            System.out.println("Clients money after cancelling the show: ");
+            clients.forEach(c -> System.out.println(c.getMoney()));
+        }
+
     }
 
     private static void csvCalls() throws FileNotFoundException {

@@ -120,6 +120,8 @@ public class CSVRepository{
 
         String line = "";
         String splitBy = ",";
+        int count = 0;
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(csvFile));
             br.readLine();
@@ -128,8 +130,27 @@ public class CSVRepository{
                 String[] cls = line.split(splitBy);
 
                 Seat seat = new Seat(Integer.parseInt(cls[1]));
+                Show show;
 
-                Show show = new Show(Integer.parseInt(cls[0]), seat, tickets.get(0), hosts.get(0));
+                switch (count) {
+                    case 0:
+                        show = new Show(Integer.parseInt(cls[0]), seat, tickets.get(0));
+                        show.setHasHost(false);
+                        break;
+                    case 1:
+                        show = new Show(Integer.parseInt(cls[0]), seat, tickets.get(1), hosts.get(0));
+                        break;
+                    case 2:
+                        show = new Show(Integer.parseInt(cls[0]), seat, tickets.get(2), hosts.get(1));
+                        break;
+                    default:
+                        show = new Show(Integer.parseInt(cls[0]), seat, tickets.get(3));
+                        show.setHasHost(false);
+                        break;
+                }
+
+                count ++;
+
                 shows.add(show);
             }
         }
@@ -150,6 +171,9 @@ public class CSVRepository{
 
         String line = "";
         String splitBy = ",";
+
+        int count = 0;
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(csvFile));
             br.readLine();
@@ -158,10 +182,37 @@ public class CSVRepository{
                 String[] cls = line.split(splitBy);
 
                 List<Show> shows = readShows();
+                Theatre theatre;
 
-                Theatre theatre = new Theatre(Integer.parseInt(cls[0]), Double.parseDouble(cls[1]),
-                                              Integer.parseInt(cls[2]), cls[3], cls[4], shows.get(0), cls[5]);
+                switch (count) {
+                    case 0:
+                        theatre = new Theatre(Integer.parseInt(cls[0]), Double.parseDouble(cls[1]),
+                                Integer.parseInt(cls[2]), cls[3], cls[4], shows.get(0), cls[5]);
+                        shows.get(count).setHasHost(false);
+                        break;
+                    case 1:
+                        theatre = new Theatre(Integer.parseInt(cls[0]), Double.parseDouble(cls[1]),
+                                Integer.parseInt(cls[2]), cls[3], cls[4], shows.get(1), cls[5]);
+                        break;
+                    case 2:
+                        theatre = new Theatre(Integer.parseInt(cls[0]), Double.parseDouble(cls[1]),
+                                Integer.parseInt(cls[2]), cls[3], cls[4], shows.get(2), cls[5]);
+                        break;
+                    default:
+                        theatre = new Theatre(Integer.parseInt(cls[0]), Double.parseDouble(cls[1]),
+                                Integer.parseInt(cls[2]), cls[3], cls[4], shows.get(3), cls[5]);
+                        shows.get(count).setHasHost(false);
+                        break;
+                }
+
+                //adding the show to the list of hosted shows by the theatre
+                List<String> thHost = theatre.getShowsHosted();
+                thHost.add(shows.get(count).getTicket().getShowName());
+                theatre.setShowsHosted(thHost);
+
                 theatres.add(theatre);
+
+                count ++;
             }
         }
         catch (IOException e) {
