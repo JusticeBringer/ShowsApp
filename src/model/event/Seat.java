@@ -1,13 +1,11 @@
 package model.event;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Seat {
     private Integer nrSeats;
-    private Map<Integer, Boolean> allSeats = new HashMap<>();
+    private Map<Integer, Boolean> allSeats;
 
     public Seat(Integer nrSeats, Map<Integer, Boolean> allSeats) {
         this.nrSeats = nrSeats;
@@ -17,6 +15,11 @@ public class Seat {
     public Seat(Integer nrSeats) {
         this.nrSeats = nrSeats;
         this.allSeats = new HashMap<>();
+
+        // place nrSeats at show
+        for (int i = 0; i < nrSeats; i++){
+            allSeats.put(i, false);
+        }
     }
 
     public Integer getNrSeats() {

@@ -1,8 +1,12 @@
 package model.individual;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Client extends Person {
     private Integer clientId;
     private double money;
+    private Map<String, Boolean> showsAttend = new HashMap<>();
     private static int nrShowsAttend = 0;
 
     public Client(Integer clientId, String username, String password, String firstName, String familyName, String email, Integer age,  double money) {
@@ -25,6 +29,14 @@ public class Client extends Person {
     public Client() {
         this.clientId = 0;
         this.money = 0;
+    }
+
+    public Map<String, Boolean> getShowsAttend() {
+        return showsAttend;
+    }
+
+    public void setShowsAttend(Map<String, Boolean> showsAttend) {
+        this.showsAttend = showsAttend;
     }
 
     public Integer getClientId() {

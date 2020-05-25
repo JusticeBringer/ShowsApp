@@ -9,12 +9,29 @@ public class Show{
     private Seat seat;
     private Ticket ticket;
     private Host host;
+    private Boolean hasHost;
 
     public Show(Integer showId, Seat seat, Ticket ticket, Host host) {
         this.showId = showId;
         this.seat = seat;
         this.ticket = ticket;
         this.host = host;
+        this.hasHost = true;
+    }
+
+    public Show(Integer showId, Seat seat, Ticket ticket) {
+        this.showId = showId;
+        this.seat = seat;
+        this.ticket = ticket;
+        this.hasHost = false;
+    }
+
+    public Boolean getHasHost() {
+        return hasHost;
+    }
+
+    public void setHasHost(Boolean hasHost) {
+        this.hasHost = hasHost;
     }
 
     public Integer getShowId() {

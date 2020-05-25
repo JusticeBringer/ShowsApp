@@ -9,11 +9,13 @@ import model.structure.Theatre;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class CSVRepository{
     private String csvFile;
+    private static Integer writerAUD = 0;
 
     public CSVRepository(){
         this.csvFile = "";
@@ -167,5 +169,32 @@ public class CSVRepository{
         }
 
         return theatres;
+    }
+
+    public void writeAudit(String numeActiune) {
+        String whereWrite = "./csvFiles/audit.csv";
+
+        try {
+            FileWriter fw = new FileWriter(whereWrite, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            if (writerAUD == 0) {
+                pw.println("nume_actiune,data");
+            }
+
+            Date date = new Date();
+
+            pw.println(numeActiune + "," + date.toString());
+            pw.flush();
+            pw.close();
+
+            writerAUD ++;
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

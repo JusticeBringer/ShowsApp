@@ -33,4 +33,7 @@ public class CSVService {
         return csvRepository.readTheatres();
     }
 
+    public void writeInAuditFile(String numeActiune) {
+        csvRepository.writeAudit(numeActiune);
+    }
 }

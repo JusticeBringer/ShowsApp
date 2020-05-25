@@ -1,8 +1,12 @@
 package model.individual;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Host extends Person {
     private Integer hostId;
     private double money;
+    private Map<String, String> showsHost = new HashMap<>();
     private static int nrShowsHosted = 0;
 
     public Host(Integer hostId, String username, String password, String firstName, String familyName, String email, Integer age,  double money) {
@@ -20,6 +24,14 @@ public class Host extends Person {
         super(id, u, p);
         this.hostId = hostId;
         this.money = money;
+    }
+
+    public Map<String, String> getShowsHost() {
+        return showsHost;
+    }
+
+    public void setShowsHost(Map<String, String> showsHost) {
+        this.showsHost = showsHost;
     }
 
     public Integer getHostId() {
