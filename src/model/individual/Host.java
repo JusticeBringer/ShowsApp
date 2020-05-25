@@ -1,12 +1,33 @@
 package model.individual;
 
 public class Host extends Person {
+    private Integer hostId;
     private double money;
     private static int nrShowsHosted = 0;
 
-    public Host(String firstName, String familyName, Integer age, double money) {
-        super(firstName, familyName, age);
+    public Host(Integer hostId, String username, String password, String firstName, String familyName, String email, Integer age,  double money) {
+        super(username, password, firstName, familyName, email, age);
+        this.hostId = hostId;
         this.money = money;
+    }
+
+    public Host(Integer hostId, double money) {
+        this.hostId = hostId;
+        this.money = money;
+    }
+
+    public Host(int id, String u, String p, Integer hostId, double money) {
+        super(id, u, p);
+        this.hostId = hostId;
+        this.money = money;
+    }
+
+    public Integer getHostId() {
+        return hostId;
+    }
+
+    public void setHostId(Integer hostId) {
+        this.hostId = hostId;
     }
 
     public double getMoney() {

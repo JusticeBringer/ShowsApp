@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3484c70a-6c29-41d5-883f-592657df4798" name="Default Changelist" comment="" />
+    <list default="true" id="3484c70a-6c29-41d5-883f-592657df4798" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/csvFiles/clients.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/csvFiles/hosts.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/csvFiles/shows.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/csvFiles/theatres.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/csvFiles/tickets.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repositories/CSVRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/CSVService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/event/Seat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/event/Show.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/event/Ticket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/individual/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/individual/Host.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/individual/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proiect/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/structure/Building.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/proiect/structure/Theatre.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/managers/DBConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/DBConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/event/Seat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/event/Seat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/event/Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/event/Show.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/event/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/event/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/individual/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/individual/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/individual/Host.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/individual/Host.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/individual/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/individual/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/structure/Theatre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/structure/Theatre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/LoginService.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,13 +59,21 @@
     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="ShowsApp" />
   </component>
   <component name="ProjectId" id="1aAlsl0aZf47uzpFlN0521GP0Dd" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gabit\Desktop\Anul2\sem_2\pao\showsApp\csvFiles" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -96,13 +133,16 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Rearranjed code" />
     <option name="LAST_COMMIT_MESSAGE" value="Rearranjed code" />
   </component>

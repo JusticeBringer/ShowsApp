@@ -3,15 +3,25 @@ package model.structure;
 import model.event.Show;
 
 public class Theatre extends Building {
+    private Integer theatreId;
     private String name;
     private Show show;
-    private String thLocation;
+    private String theatreLocation;
 
-    public Theatre(Double surface, Integer height, String architecture, String name, Show show, String thLocation) {
+    public Theatre(Integer theatreId, Double surface, Integer height, String architecture, String name, Show show, String theatreLocation) {
         super(surface, height, architecture);
+        this.theatreId = theatreId;
         this.name = name;
         this.show = show;
-        this.thLocation = thLocation;
+        this.theatreLocation = theatreLocation;
+    }
+
+    public Integer getTheatreId() {
+        return theatreId;
+    }
+
+    public void setTheatreId(Integer theatreId) {
+        this.theatreId = theatreId;
     }
 
     public String getName() {
@@ -30,11 +40,11 @@ public class Theatre extends Building {
         this.show = show;
     }
 
-    public String getThLocation() {
-        return thLocation;
+    public String getTheatreLocation() {
+        return theatreLocation;
     }
 
-    public void setThLocation(String thLocation) {
-        this.thLocation = thLocation;
+    public void setTheatreLocation(String theatreLocation) {
+        this.theatreLocation = theatreLocation;
     }
 }

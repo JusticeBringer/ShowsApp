@@ -4,14 +4,33 @@ import model.individual.Host;
 
 import java.util.List;
 
-public class Show extends Seat{
+public class Show{
+    private Integer showId;
+    private Seat seat;
     private Ticket ticket;
     private Host host;
 
-    public Show(long nrSeats, List<Long> allSeats, Ticket ticket, Host host) {
-        super(nrSeats, allSeats);
+    public Show(Integer showId, Seat seat, Ticket ticket, Host host) {
+        this.showId = showId;
+        this.seat = seat;
         this.ticket = ticket;
         this.host = host;
+    }
+
+    public Integer getShowId() {
+        return showId;
+    }
+
+    public void setShowId(Integer showId) {
+        this.showId = showId;
+    }
+
+    public Seat getSeat() {
+        return seat;
+    }
+
+    public void setSeat(Seat seat) {
+        this.seat = seat;
     }
 
     public Ticket getTicket() {

@@ -1,0 +1,5 @@
+﻿id,username,password,firstName,familyName,email,age,money
+1,trem,1234,Trem,Rand,trem@gmail.com,34,350
+2,rout,1234,Rout,Rand,rout@gmail.com,23,450
+3,cornelo,1234,Cornelo,Rand,cornelo@gmail.com,19,550
+4,ionelo,1234,Ionelo,Rand,ionelo@gmail.com,21,650

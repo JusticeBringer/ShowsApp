@@ -1,18 +1,30 @@
 package model.event;
 
 public class Ticket {
+    private Integer ticketId;
     private Integer price;
     private Integer year;
     private Integer month;
     private Integer day;
-    private String location;
+    private String showName;
+    private String showLocation;
 
-    public Ticket(Integer price, Integer year, Integer month, Integer day, String location) {
+    public Ticket(Integer ticketId, Integer price, Integer year, Integer month, Integer day, String showName, String showLocation) {
+        this.ticketId = ticketId;
         this.price = price;
         this.year = year;
         this.month = month;
         this.day = day;
-        this.location = location;
+        this.showName = showName;
+        this.showLocation = showLocation;
+    }
+
+    public Integer getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(Integer ticketId) {
+        this.ticketId = ticketId;
     }
 
     public Integer getPrice() {
@@ -47,11 +59,19 @@ public class Ticket {
         this.day = day;
     }
 
-    public String getLocation() {
-        return location;
+    public String getShowName() {
+        return showName;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setShowName(String showName) {
+        this.showName = showName;
+    }
+
+    public String getShowLocation() {
+        return showLocation;
+    }
+
+    public void setShowLocation(String showLocation) {
+        this.showLocation = showLocation;
     }
 }
