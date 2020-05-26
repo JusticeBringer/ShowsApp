@@ -4,15 +4,8 @@
     <list default="true" id="3484c70a-6c29-41d5-883f-592657df4798" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csvFiles/audit.csv" beforeDir="false" afterPath="$PROJECT_DIR$/csvFiles/audit.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvFiles/tickets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/csvFiles/tickets.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/proiect/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proiect/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/proiect/model/structure/Theatre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proiect/model/structure/Theatre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/proiect/repositories/CSVRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proiect/repositories/CSVRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/proiect/service/ShowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/proiect/service/ShowService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/structure/Theatre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/structure/Theatre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repositories/CSVRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repositories/CSVRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/ShowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ShowService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -784,3 +784,16 @@ Showing people attending to events,Mon May 25 23:46:36 EEST 2020
 Host with id 0 is trying to host an event,Mon May 25 23:46:36 EEST 2020
 Client with id 0 is trying to cancel ticket,Mon May 25 23:46:36 EEST 2020
 Host with id 0 is trying to cancel an event,Mon May 25 23:46:36 EEST 2020
+nume_actiune,data
+Extracting clients,Mon May 25 23:49:39 EEST 2020
+Extracting hosts,Mon May 25 23:49:39 EEST 2020
+Extracting shows,Mon May 25 23:49:39 EEST 2020
+Extracting theatres,Mon May 25 23:49:39 EEST 2020
+Showing all shows to the user.,Mon May 25 23:49:39 EEST 2020
+Client with id 0 is buying a ticket,Mon May 25 23:49:39 EEST 2020
+Client with id 1 is buying a ticket,Mon May 25 23:49:39 EEST 2020
+Client with id 2 is buying a ticket,Mon May 25 23:49:39 EEST 2020
+Showing people attending to events,Mon May 25 23:49:39 EEST 2020
+Host with id 0 is trying to host an event,Mon May 25 23:49:39 EEST 2020
+Client with id 0 is trying to cancel ticket,Mon May 25 23:49:40 EEST 2020
+Host with id 0 is trying to cancel an event,Mon May 25 23:49:40 EEST 2020

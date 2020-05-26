@@ -142,7 +142,7 @@ public class Main {
 
         List<Show> shows = csvService.getShows();
         csvService.writeInAuditFile("Extracting shows");
-        System.out.println("Shows name: ");
+        System.out.println("\nShows name: ");
         shows.forEach(s -> System.out.println(s.getTicket().getShowName()));
 
         List<Theatre> theatres = csvService.getTheatres();
