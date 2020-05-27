@@ -14,14 +14,14 @@ import java.util.Map;
 
 public class ShowService {
 
-    private CSVService csvService;
+    private DatabaseService databaseService;
 
     public ShowService() {
-        csvService = new CSVService();
+        databaseService = new DatabaseService();
     }
 
     public void showAllShows() throws FileNotFoundException {
-        List<Theatre> theatres = csvService.getTheatres();
+        List<Theatre> theatres = databaseService.getDBTheatres();
         System.out.println("\n\nShows list: ");
 
         for (Theatre t:
@@ -54,7 +54,7 @@ public class ShowService {
     }
 
     public boolean buyTicket(Client client) throws FileNotFoundException {
-        List<Theatre> theatres = csvService.getTheatres();
+        List<Theatre> theatres = databaseService.getDBTheatres();
 
         int seatsAvailable = 0;
         Map<Integer, Boolean> seats = theatres.get(0).getShow().getSeat().getAllSeats();
@@ -91,7 +91,7 @@ public class ShowService {
     }
 
     public boolean hostEvent(Host host) throws FileNotFoundException {
-        List<Theatre> theatres = csvService.getTheatres();
+        List<Theatre> theatres = databaseService.getDBTheatres();
 
         int seatsAvailable = 0;
         Map<Integer, Boolean> seats = theatres.get(0).getShow().getSeat().getAllSeats();
@@ -123,7 +123,7 @@ public class ShowService {
     }
 
     public boolean cancelTicket(Client client) throws FileNotFoundException {
-        List<Theatre> theatres = csvService.getTheatres();
+        List<Theatre> theatres = databaseService.getDBTheatres();
 
         Map<String, Boolean> clientAttend = client.getShowsAttend();
 
@@ -179,7 +179,7 @@ public class ShowService {
     }
 
     public boolean cancelShow(Host host) throws FileNotFoundException {
-        List<Theatre> theatres = csvService.getTheatres();
+        List<Theatre> theatres = databaseService.getDBTheatres();
 
         Map<String, String> hostHosts = host.getShowsHost();
 
@@ -211,7 +211,7 @@ public class ShowService {
                     }
 
                     //refund money to clients
-                    List<Client> clients = csvService.getClients();
+                    List<Client> clients = databaseService.getDBClients();
                     for (Client client : clients){
                         Map<String, Boolean> clsAttend = client.getShowsAttend();
                         for (Map.Entry<String, Boolean> ent : clsAttend.entrySet()){
