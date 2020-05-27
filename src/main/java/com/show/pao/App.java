@@ -1,6 +1,8 @@
 package com.show.pao; // Project nr. 9: ticket reservation in a show (show, seat, client)
 
-import loginArea.LoginFrame;
+import GUI.clientArea.ClientFrame;
+import GUI.hostArea.HostFrame;
+import GUI.loginArea.LoginFrame;
 import model.event.Show;
 import model.individual.Client;
 import model.individual.Host;
@@ -9,6 +11,7 @@ import service.AuditService;
 import service.DatabaseService;
 import service.ShowService;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +38,51 @@ public class App {
         serviceCalls();
 
         //starting GUI
-        loginAreaCall();
+        GUICalls();
 
     }
-    
-    private static void loginAreaCall(){
+
+    private static void GUICalls(){
         LoginFrame loginFrame = new LoginFrame();
+        loginFrame.setTitle("Shows App");
+        while (!loginFrame.isCanGoNext()) {
+            loginFrame = loginFrame;
+        }
+
+        // we close last panel
+        loginFrame.setVisible(false);
+
+        JRadioButton clOrHost = loginFrame.getClientOrHost();
+
+        if (clOrHost.isSelected()){
+            ClientFrame clientFrame = new ClientFrame();
+            clientFrame.setTitle("Shows App - Client");
+
+            Client lgC = loginFrame.getLoggedInClient();
+            clientFrame.setUserMoney(lgC.getMoney());
+            clientFrame.setUsername(lgC.getFirstName() + " " + lgC.getFamilyName());
+
+            //we list available shows
+            clientFrame.setPrShowName(dbTheatres.get(0).getShow().getTicket().getShowName());
+            clientFrame.setPrShowLocation(dbTheatres.get(0).getShow().getTicket().getShowLocation());
+
+
+
+            // we open the client panel
+            clientFrame.showThePanel();
+        }
+        else{
+            HostFrame hostFrame = new HostFrame();
+            hostFrame.setTitle("Shows App - Host");
+
+            Host lgH = loginFrame.getLoggedInHost();
+            hostFrame.setUserMoney(lgH.getMoney());
+            hostFrame.setUsername(lgH.getFirstName() + " " + lgH.getFamilyName());
+
+            // we open the host panel
+            hostFrame.showThePanel();
+        }
+
 
     }
 
