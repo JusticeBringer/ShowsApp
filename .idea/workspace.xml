@@ -2,34 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b21fb044-0931-4ce4-9d2b-79d175a92bce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/repositories/AuditRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/repositories/DatabaseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/AuditService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/DatabaseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GUI/clientArea/ClientFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GUI/hostArea/HostFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csvFiles/audit.csv" beforeDir="false" afterPath="$PROJECT_DIR$/csvFiles/audit.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvFiles/clients.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvFiles/hosts.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvFiles/shows.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvFiles/theatres.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/csvFiles/tickets.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/show/pao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/show/pao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/loginArea/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/loginArea/LoginFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/event/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/event/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/individual/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/individual/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repositories/CSVRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/loginArea/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/loginArea/LoginFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/CSVService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ShowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ShowService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/show/pao/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/show/pao/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/loginArea/LoginFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/loginArea/LoginFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/loginArea/LoginFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/loginArea/LoginFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/event/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/event/Ticket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/individual/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/individual/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/repositories/CSVRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/CSVService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/loginArea/LoginFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/loginArea/LoginFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/repositories/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repositories/UserRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/LoginService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/ShowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/ShowService.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

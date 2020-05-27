@@ -1,15 +1,20 @@
-package loginArea;
+package GUI.loginArea;
 
 import model.individual.Client;
 import model.individual.Host;
+import service.DatabaseService;
 import service.LoginService;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class LoginFrame extends JFrame {
+
+    private Client loggedInClient;
+    private Host loggedInHost;
 
     private String username;
 
@@ -22,11 +27,15 @@ public class LoginFrame extends JFrame {
     private JLabel newLine3 = new JLabel("<html><br><br><p></p></html>");
     private JLabel newLine4 = new JLabel("<html><br><br><p></p></html>");
     private JLabel newLine5 = new JLabel("<html><br><br><p></p></html>");
-    private JTextArea inputUsername = new JTextArea(2, 20);
+    private JTextArea inputUsername = new JTextArea(1, 20);
     private JLabel insertPassword = new JLabel("Password");
     private JPasswordField inputPassword = new JPasswordField(20);
     private JRadioButton clientOrHost = new JRadioButton("Client if checked, Host otherwise");
     private JButton loginButton = new JButton("Login");
+
+    private boolean canGoNext = false;
+    private boolean clientFHostT = false;
+
 
     public LoginFrame(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -61,23 +70,83 @@ public class LoginFrame extends JFrame {
                 String psw = String.valueOf(inputPassword.getPassword());
                 boolean checkBx =  clientOrHost.isSelected();
 
-                System.out.println(usr + " " + psw + " " + checkBx);
-
                 LoginService loginService = new LoginService();
                 boolean res1 = false;
 
                 if(checkBx){
                     Client c = new Client(usr, psw);
                     res1 = loginService.loginClient(c);
+
+
                 }
                 else{
                     Host h = new Host(usr, psw);
                     res1 = loginService.loginHost(h);
                 }
 
-                System.out.println(res1);
+                if (res1){
+                    DatabaseService databaseService = new DatabaseService();
+                    if (checkBx){
+                        List<Client> clients = databaseService.getDBClients();
+
+                        for(Client c: clients){
+                            if(c.getUsername().equals(usr)){
+                                setLoggedInClient(c);
+                                break;
+                            }
+                        }
+
+                    }
+                    else{
+                        List<Host> hosts = databaseService.getDBHosts();
+
+                        for(Host h: hosts){
+                            if (h.getUsername().equals(usr)){
+                                setLoggedInHost(h);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                setCanGoNext(res1);
+
+
             }
         });
+
+    }
+
+    public Host getLoggedInHost() {
+        return loggedInHost;
+    }
+
+    public void setLoggedInHost(Host loggedInHost) {
+        this.loggedInHost = loggedInHost;
+    }
+
+    public Client getLoggedInClient() {
+        return loggedInClient;
+    }
+
+    public void setLoggedInClient(Client loggedInClient) {
+        this.loggedInClient = loggedInClient;
+    }
+
+    public boolean isCanGoNext() {
+        return canGoNext;
+    }
+
+    public boolean isClientFHostT() {
+        return clientFHostT;
+    }
+
+    public void setClientFHostT(boolean clientFHostT) {
+        this.clientFHostT = clientFHostT;
+    }
+
+    public void setCanGoNext(boolean canGoNext) {
+        this.canGoNext = canGoNext;
     }
 
     public String getUsername() {
