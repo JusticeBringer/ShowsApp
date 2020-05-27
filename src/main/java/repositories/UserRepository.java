@@ -26,22 +26,20 @@ public class UserRepository {
     }
 
     public Client findUserByUsernameClient(String username) {
-        String sql = "SELECT * FROM clients_data WHERE username = ?";
+        String sql_qr = "SELECT * FROM clients_data WHERE username = ?";
 
-        try (
-                Connection con = DBConnectionManager.getInstance().createConnection();
-                PreparedStatement statement = con.prepareStatement(sql);
-        ) {
-            statement.setString(1, username);
+        try {
+            Connection con = DBConnectionManager.getInstance().createConnection();
+            Statement statement = con.createStatement();
 
-            ResultSet set = statement.executeQuery(); // in RS avem randurile din tabela
+            ResultSet rs = statement.executeQuery(sql_qr);
+            // in RS avem randurile din tabela
 
-            if (set.next()) {
-                int id = set.getInt("idclients_data");
-                String u = set.getString("username");
-                String p = set.getString("password");
+            if (rs.next()) {
+                int id = rs.getInt("idclients_data");
+                String u = rs.getString("username");
+                String p = rs.getString("password");
 
-                System.out.println("here");
                 return new Client(id, u, p);
             }
         } catch (SQLException e) {

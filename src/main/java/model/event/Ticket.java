@@ -9,7 +9,8 @@ public class Ticket {
     private String showName;
     private String showLocation;
 
-    public Ticket(Integer ticketId, Integer price, Integer year, Integer month, Integer day, String showName, String showLocation) {
+    public Ticket(Integer ticketId, Integer price, Integer year, Integer month, Integer day,
+                  String showName, String showLocation) {
         this.ticketId = ticketId;
         this.price = price;
         this.year = year;

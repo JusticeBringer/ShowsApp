@@ -9,7 +9,9 @@ public class Client extends Person {
     private Map<String, Boolean> showsAttend = new HashMap<>();
     private static int nrShowsAttend = 0;
 
-    public Client(Integer clientId, String username, String password, String firstName, String familyName, String email, Integer age,  double money) {
+    public Client(Integer clientId, String username, String password, String firstName, String familyName, String email,
+                  Integer age,  double money) {
+
         super(username, password, firstName, familyName, email, age);
         this.clientId = clientId;
         this.money = money;
