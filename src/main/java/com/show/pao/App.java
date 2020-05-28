@@ -10,7 +10,6 @@ import model.structure.Theatre;
 import service.AuditService;
 import service.DatabaseService;
 import service.ShowService;
-
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -42,6 +41,8 @@ public class App {
     private static void GUICalls(){
         LoginFrame loginFrame = new LoginFrame();
         loginFrame.setTitle("Shows App");
+
+        // while user cannot go over login panel we loop
         while (!loginFrame.isCanGoNext()) {
             loginFrame = loginFrame;
         }
@@ -49,8 +50,10 @@ public class App {
         // we close last panel
         loginFrame.setVisible(false);
 
+        // we take the choice of client or host login
         JRadioButton clOrHost = loginFrame.getClientOrHost();
 
+        // if client logged in ->
         if (clOrHost.isSelected()){
             ClientFrame clientFrame = new ClientFrame();
             clientFrame.setTitle("Shows App - Client");
@@ -67,6 +70,7 @@ public class App {
             // set nr Shows
             clientFrame.setHowManyShows(dbTheatres.size());
 
+            // put shows inside panel
             int nr = -1;
             for (Theatre t: dbTheatres){
                 nr ++;
@@ -80,20 +84,51 @@ public class App {
             // send the client to client frame
             clientFrame.setClient(lgC);
 
-
-            //implement refunding ticket
-
-
             // we open the client panel
             clientFrame.showThePanel();
-        }
+        } // else host logged in ->
         else{
             HostFrame hostFrame = new HostFrame();
             hostFrame.setTitle("Shows App - Host");
 
+            // we put banner of welcome with the name of logged in host
             Host lgH = loginFrame.getLoggedInHost();
             hostFrame.setUserMoney(lgH.getMoney());
             hostFrame.setUsername(lgH.getFirstName() + " " + lgH.getFamilyName());
+
+            //we list available shows
+            ShowService showService = new ShowService();
+            auditService.writeInAuditFile("Showing all shows to the host.", Thread.currentThread().getName());
+
+            // set nr Shows
+            hostFrame.setHowManyShows(dbTheatres.size());
+
+            // we set shows who have host
+            ArrayList<Integer> showsHostedOrNot = new ArrayList<>();
+            for (Theatre t: dbTheatres){
+                if (!t.getShow().getHasHost()){
+                    showsHostedOrNot.add(t.getShow().getShowId());
+                }
+            }
+
+            // we transfer this data to host frame panel side
+            hostFrame.setShowsHostedOrNot();
+
+            // we say what shows are already hosted
+            hostFrame.setWasOrNotHostedAlready(showsHostedOrNot);
+
+            // put the shows inside panel
+            int nr = -1;
+            for (Theatre t: dbTheatres){
+                nr ++;
+
+                String details = showService.showSendDetails(nr);
+                hostFrame.setMoreShows(details);
+            }
+
+            // implement hosting show
+            // send the host to host frame
+            hostFrame.setHost(lgH);
 
             // we open the host panel
             hostFrame.showThePanel();
@@ -139,5 +174,5 @@ public class App {
         dbTheatres = databaseService.getDBTheatres();
         dbTheatres.forEach(c -> System.out.println(c.getName()));
     }
-//
+
 }

@@ -186,4 +186,11 @@ public class DatabaseRepository {
         return theatres;
     }
 
+    public int getTheatreSeats(int idOfShow){
+        List<Theatre> theatres = databaseTheatres();
+        System.out.println(theatres.get(idOfShow).getShow().getSeat().getNrSeats());
+
+        return theatres.get(idOfShow).getShow().getSeat().getNrSeats();
+    }
+
 }
