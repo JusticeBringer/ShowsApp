@@ -54,4 +54,12 @@ Except create, operations as read, update, delete were implemented.
 1. Delete ticket record after host cancelled the show
 2. Delete show record after host cancelled the show
 
+## Audit service
+
+The audit is a comma separated value (csv) file, with 3 columns:
+1. Action name
+2. Timestamp
+3. Thread name - thread that called a method
+
+Every time a more important operation is made, it is reported in the audit.csv file. Example of its records can be seen [here](https://github.com/JusticeBringer/ShowsApp/blob/master/csvFiles/audit.csv).
  
