@@ -7,6 +7,7 @@ import model.event.Ticket;
 import model.individual.Client;
 import model.individual.Host;
 import model.structure.Theatre;
+import service.AuditService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,12 +17,15 @@ import java.util.Timer;
 public class DatabaseRepository {
     private String dbFile;
     private static Integer writerAUD = 0;
+    private AuditService auditService = new AuditService();
 
     public DatabaseRepository(){
         this.dbFile = "";
     }
 
     public List<Client> databaseClients(){
+        auditService.writeInAuditFile("Getting clients from database", Thread.currentThread().getName());
+
         List<Client> clients = new ArrayList<>();
 
         dbFile = "clients_data";
@@ -54,6 +58,8 @@ public class DatabaseRepository {
         return clients;
     }
     public List<Host> databaseHosts(){
+        auditService.writeInAuditFile("Getting hosts from database", Thread.currentThread().getName());
+
         List<Host> hosts = new ArrayList<>();
 
         dbFile = "hosts_data";
@@ -86,6 +92,8 @@ public class DatabaseRepository {
         return hosts;
     }
     public List<Ticket> databaseTickets(){
+        auditService.writeInAuditFile("Getting tickets from database", Thread.currentThread().getName());
+
         List<Ticket> tickets = new ArrayList<>();
 
         dbFile = "tickets";
@@ -117,6 +125,8 @@ public class DatabaseRepository {
         return tickets;
     }
     public List<Show> databaseShows(){
+        auditService.writeInAuditFile("Getting shows from database", Thread.currentThread().getName());
+
         List<Ticket> tickets = databaseTickets();
         List<Host> hosts = databaseHosts();
         List<Show> shows = new ArrayList<>();
@@ -154,6 +164,8 @@ public class DatabaseRepository {
         return shows;
     }
     public List<Theatre> databaseTheatres(){
+        auditService.writeInAuditFile("Getting theatres from database", Thread.currentThread().getName());
+
         List<Show> shows = databaseShows();
         List<Theatre> theatres = new ArrayList<>();
 
@@ -185,12 +197,4 @@ public class DatabaseRepository {
 
         return theatres;
     }
-
-    public int getTheatreSeats(int idOfShow){
-        List<Theatre> theatres = databaseTheatres();
-        System.out.println(theatres.get(idOfShow).getShow().getSeat().getNrSeats());
-
-        return theatres.get(idOfShow).getShow().getSeat().getNrSeats();
-    }
-
 }

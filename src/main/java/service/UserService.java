@@ -20,4 +20,15 @@ public class UserService {
         userRepository.updateSeatsAtShow(getNrShowNrToBuy, seatsNewNumber);
     }
 
+    public void deleteShowFromId(int getNrShowNrToCancel) {
+        userRepository.deleteShowFromGivenId(getNrShowNrToCancel);
+    }
+
+    public void deleteTicketFromId(int getNrShowNrToCancel) {
+        userRepository.deleteTicketFromGivenId(getNrShowNrToCancel);
+    }
+
+    public void deleteTheatreFromId(int getNrShowNrToCancel) {
+        userRepository.deleteTheatreFromGivenId(getNrShowNrToCancel);
+    }
 }
