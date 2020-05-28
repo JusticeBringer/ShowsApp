@@ -13,4 +13,11 @@ public class UserService {
     public void updateMoneyToClient(int clID, double mon){
         userRepository.updateClientMoney(clID, mon);
     }
+    public void updateMoneyToHost(int hID, double mon){
+        userRepository.updateHostMoney(hID, mon);
+    }
+    public void updateSeatsToShows(int getNrShowNrToBuy, int seatsNewNumber) {
+        userRepository.updateSeatsAtShow(getNrShowNrToBuy, seatsNewNumber);
+    }
+
 }

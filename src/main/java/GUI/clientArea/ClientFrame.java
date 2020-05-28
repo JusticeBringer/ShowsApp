@@ -2,6 +2,7 @@ package GUI.clientArea;
 
 import model.individual.Client;
 import model.structure.Theatre;
+import service.DatabaseService;
 import service.ShowService;
 import service.UserService;
 
@@ -89,6 +90,7 @@ public class ClientFrame extends JFrame {
                 int getNrShowNrToBuy = Integer.parseInt(getShowNrToBuy);
 
                 ShowService showService = new ShowService();
+                DatabaseService databaseService = new DatabaseService();
 
                 boolean canBuy = showService.buyTicket(getClient(), getNrShowNrToBuy);
                 int showMoney = showService.returnShowCost(getNrShowNrToBuy);
@@ -98,11 +100,9 @@ public class ClientFrame extends JFrame {
                     setUserMoney(getUserMoney() - showMoney);
                     insertMoney.setText("Your money: " + getUserMoney());
 
-                    // execute update to database
+                    // execute update to database money clients
                     UserService userService = new UserService();
                     userService.updateMoneyToClient(getClient().getClientId() , getUserMoney());
-
-
                 }
                 else{
 
@@ -170,7 +170,7 @@ public class ClientFrame extends JFrame {
             clientPanel.add(putShowText);
         }
 
-        setSize(1700, 450);
+        setSize(1700, 250);
         setLocationRelativeTo(null);
         setVisible(true);
     }

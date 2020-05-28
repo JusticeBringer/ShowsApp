@@ -1,7 +1,15 @@
 package GUI.hostArea;
 
+import model.event.Show;
+import model.individual.Host;
+import service.ShowService;
+import service.UserService;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class HostFrame extends JFrame {
 
@@ -14,7 +22,7 @@ public class HostFrame extends JFrame {
     private String spaceVeryBig = spaceBig + " " + spaceMedium;
 
     private JPanel hostPanel = new JPanel(new FlowLayout());
-    private JLabel hostArea = new JLabel(spaceLittle + "             " + spaceMedium);
+    private JLabel hostArea = new JLabel("");
     private JLabel greetUser = new JLabel(spaceLittle + "Welcome, ");
     private JLabel newLine = new JLabel("<html><br><br><p></p></html>");
     private JLabel newLine1 = new JLabel("<html><br><br><p></p></html>");
@@ -27,12 +35,32 @@ public class HostFrame extends JFrame {
 
     private JLabel sp = new JLabel(spaceMedium);
 
+    // New Panel
+
+    private Host host;
+
     private JLabel insertMoney = new JLabel("Your money: ");
     private JLabel showsAvailable = new JLabel( "List of shows: " + spaceVeryLittle);
 
-    private JButton buyTicket = new JButton("Host show");
+
+    private JLabel hostShowText = new JLabel("Host show (insert show number) ");
+    private JTextArea hostShowTextArea = new JTextArea(1, 1);
+    private JButton hostShowButton = new JButton("Host show");
+
+    private JLabel cancelShowText = new JLabel("           Cancel show (insert show number) ");
+    private JTextArea cancelShowTextArea = new JTextArea(1,1);
+    private JButton cancelShowButton = new JButton("Cancel show");
+
+    private int howManyShows = 0;
+    private ArrayList<String> st = new ArrayList<>();
+    private ArrayList<String> stHosted = new ArrayList<>();
+
+    private ArrayList<Integer> showsHostedOrNot = new ArrayList<>();
+    private ArrayList<Integer> wasOrNotHostedAlready = new ArrayList<>();
 
     private static int showAfter = 0;
+
+    private String showAllDetails = "";
 
     public HostFrame() {
         if (showAfter > 0){
@@ -47,26 +75,145 @@ public class HostFrame extends JFrame {
         add(hostPanel);
         hostPanel.add(hostArea);
 
-        hostPanel.add(newLine);
-        greetUser.setText(greetUser.getText() + username + spaceLittle);
+        greetUser.setText(greetUser.getText() + username);
         hostPanel.add(greetUser, BorderLayout.LINE_START);
 
-        hostPanel.add(newLine1);
-        hostPanel.add(newLine2);
-        hostPanel.add(newLine3);
-
-        hostPanel.add(showsAvailable, BorderLayout.BEFORE_LINE_BEGINS);
-        hostPanel.add(newLine4);
-        hostPanel.add(newLine5);
-
         insertMoney.setText(insertMoney.getText() + userMoney.toString());
-        hostPanel.add(insertMoney, BorderLayout.AFTER_LINE_ENDS);
+        hostPanel.add(insertMoney);
 
-        hostPanel.add(sp);
+        showsAvailable.setText(showsAvailable.getText() + getShowAllDetails());
+        hostPanel.add(showsAvailable, BorderLayout.BEFORE_LINE_BEGINS);
 
-        setSize(500, 450);
+        // add host show
+        hostPanel.add(hostShowText);
+        hostPanel.add(hostShowTextArea);
+        hostPanel.add(hostShowButton);
+
+        hostShowButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String getShowNrToHost = hostShowTextArea.getText();
+                int getNrShowNrToHost = Integer.parseInt(getShowNrToHost);
+
+                ShowService showService = new ShowService();
+
+                boolean canHost = showService.hostEvent(getHost(), getNrShowNrToHost);
+                int showMoney = showService.returnShowCost(getNrShowNrToHost);
+
+                if (canHost){
+                    // set new money amount of host
+                    setUserMoney(getUserMoney() - showMoney);
+                    insertMoney.setText("Your money: " + getUserMoney());
+
+                    //Get the components in the panel
+                    Component[] componentList = hostPanel.getComponents();
+
+                    int nr = 0;
+
+                    //Loop through the components
+                    for(Component c : componentList){
+                        //Find the components you want to remove
+                        if(c instanceof JLabel){
+                            nr ++;
+
+                            if (nr < 7)
+                                continue;
+
+                            //Remove it
+                            hostPanel.remove(c);
+                        }
+                    }
+
+                    // update shows with host
+                    updateShowsWithHost(getNrShowNrToHost);
+
+                    // we update the text of hosted or not shows
+                    setHostedWho();
+
+                    // make new text
+                    for(int i = 0; i < getHowManyShows(); i ++){
+                        // set new text
+                        JLabel putShowText = new JLabel();
+
+                        // put updated text
+                        putShowText.setText(stHosted.get(i));
+
+                        // add to panel
+                        hostPanel.add(putShowText);
+                    }
+
+                    // remake panel
+                    hostPanel.revalidate();
+                    hostPanel.repaint();
+
+                    // execute update to database
+                    UserService userService = new UserService();
+                    userService.updateMoneyToHost(getHost().getHostId(), getUserMoney());
+                }
+                else{
+                    // show dialog that he cannot host
+
+                    JPanel myPanel = new JPanel();
+                    myPanel.setBounds(0, 0, 400, 50);
+                    myPanel.setBackground(Color.WHITE);
+                    JOptionPane jop = new JOptionPane();
+                    JDialog dialog = jop.createDialog("Show already hosted or no money");
+                    dialog.setSize(400, 50);
+                    dialog.setContentPane(myPanel);
+                    dialog.setVisible(true);
+                }
+            }
+        });
+
+        // add cancel show
+        hostPanel.add(cancelShowText);
+        hostPanel.add(cancelShowTextArea);
+        hostPanel.add(cancelShowButton);
+
+        cancelShowButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String getShowNrToCancel = hostShowTextArea.getText();
+                int getNrShowNrToCancel = Integer.parseInt(getShowNrToCancel);
+
+                ShowService showService = new ShowService();
+
+                boolean canCancel = showService.cancelShow(getHost(), getNrShowNrToCancel);
+                int showMoney = showService.returnShowCost(getNrShowNrToCancel);
+
+            }
+        });
+
+        for(int i = 0; i < getHowManyShows(); i ++){
+            JLabel putShowText = new JLabel();
+            putShowText.setText(st.get(i));
+
+            hostPanel.add(putShowText);
+        }
+
+
+        setSize(1700, 250);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void updateShowsWithHost(int getNrShowNrToHost) {
+        showsHostedOrNot.add(getNrShowNrToHost);
+    }
+
+    public Host getHost() {
+        return host;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
+    }
+
+    private String getShowAllDetails() {
+        return showAllDetails;
+    }
+    public void setShowAllDetails(String showAllDetails) {
+        this.showAllDetails = showAllDetails;
     }
 
     public String getUsername() {
@@ -84,5 +231,66 @@ public class HostFrame extends JFrame {
     public void setUserMoney(Double userMoney) {
         this.userMoney = userMoney;
     }
+    public int getHowManyShows() {
+        return howManyShows;
+    }
 
+    public void setHowManyShows(int howManyShows) {
+        this.howManyShows = howManyShows;
+    }
+
+    public void setMoreShows(String showDet) {
+        this.st.add(showDet);
+    }
+    public ArrayList<String> getSt() {
+        return st;
+    }
+
+    public ArrayList<String> getStHosted() {
+        return stHosted;
+    }
+
+    public ArrayList<Integer> getShowsHostedOrNot() {
+        return showsHostedOrNot;
+    }
+
+    public ArrayList<Integer> getWasOrNotHostedAlready() {
+        return wasOrNotHostedAlready;
+    }
+
+    public void setWasOrNotHostedAlready(ArrayList<Integer> wasOrNotHostedAlready) {
+        this.wasOrNotHostedAlready = wasOrNotHostedAlready;
+    }
+
+    public void setShowsHostedOrNot() {
+        this.showsHostedOrNot = new ArrayList<>();
+    }
+
+    // showHostedOrNot has shows hosted dynamic -> 1, 3 ...
+    // was hosted has original values
+
+    public void setHostedWho(){
+        // we delete old values
+        while (this.stHosted.size() > 0){
+            this.stHosted.remove(0);
+        }
+
+        // we put the new values
+        for(int i = 0; i < st.size(); i++){
+
+            int sz = stHosted.size();
+
+            // we search in newly hosted first
+            for (int j = 0; j < showsHostedOrNot.size(); j++){
+                if( (i) == showsHostedOrNot.get(j)){
+                    stHosted.add(st.get(i) + " Now it is hosted");
+                }
+            }
+
+            if (sz == stHosted.size()){
+                stHosted.add(st.get(i));
+            }
+        }
+
+    }
 }

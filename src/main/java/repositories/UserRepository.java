@@ -1,8 +1,6 @@
 package repositories;
 
 import managers.DBConnectionManager;
-import model.individual.Client;
-import model.individual.Host;
 import model.individual.Person;
 
 import java.sql.*;
@@ -94,6 +92,45 @@ public class UserRepository {
         {
             statement.setDouble(1, newMoneyValue);
             statement.setInt(2, clientID);
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateHostMoney(int hostID, double newMoneyValue) {
+        String sql_qr = "UPDATE hosts_data SET money = ? WHERE idhosts_data = ?";
+
+        try (
+                Connection con = DBConnectionManager.getInstance().createConnection();
+                PreparedStatement statement = con.prepareStatement(sql_qr);
+        )
+
+        {
+            statement.setDouble(1, newMoneyValue);
+            statement.setInt(2, hostID);
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateSeatsAtShow(int getNrShowNrToBuy, int seatsNewNumber) {
+        String sql_qr = "UPDATE shows SET seats = ? WHERE idshows = ?";
+        System.out.println(seatsNewNumber);
+
+        try (
+                Connection con = DBConnectionManager.getInstance().createConnection();
+                PreparedStatement statement = con.prepareStatement(sql_qr);
+        )
+
+        {
+            statement.setDouble(1, seatsNewNumber);
+            statement.setInt(2, getNrShowNrToBuy);
 
             statement.executeUpdate();
 
