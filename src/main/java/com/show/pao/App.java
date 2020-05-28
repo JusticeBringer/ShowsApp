@@ -14,7 +14,6 @@ import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 // class used to make requests
 public class App {
@@ -35,7 +34,6 @@ public class App {
 
         //starting GUI
         GUICalls();
-
     }
 
     private static void GUICalls(){
@@ -77,7 +75,6 @@ public class App {
 
                 String details = showService.showSendDetails(nr);
                 clientFrame.setMoreShows(details);
-
             }
 
             // implement buying ticket
@@ -85,7 +82,9 @@ public class App {
             clientFrame.setClient(lgC);
 
             // we open the client panel
+            auditService.writeInAuditFile("Showing the GUI to user.", Thread.currentThread().getName());
             clientFrame.showThePanel();
+
         } // else host logged in ->
         else{
             HostFrame hostFrame = new HostFrame();
@@ -111,7 +110,7 @@ public class App {
                 }
             }
 
-            // we transfer this data to host frame panel side
+            // we initialize empty list of shows going to be host
             hostFrame.setShowsHostedOrNot();
 
             // we say what shows are already hosted
@@ -131,10 +130,9 @@ public class App {
             hostFrame.setHost(lgH);
 
             // we open the host panel
+            auditService.writeInAuditFile("Showing the GUI to the user.", Thread.currentThread().getName());
             hostFrame.showThePanel();
         }
-
-
     }
 
     private static void initServices(){
@@ -142,14 +140,12 @@ public class App {
         databaseService = new DatabaseService();
     }
 
-
     private static void databaseCalls(){
         loadClients();
         loadHosts();
         loadShows();
         loadTheatres();
     }
-
 
     private static void loadClients(){
         auditService.writeInAuditFile("Extracting clients", Thread.currentThread().getName());
@@ -174,5 +170,4 @@ public class App {
         dbTheatres = databaseService.getDBTheatres();
         dbTheatres.forEach(c -> System.out.println(c.getName()));
     }
-
 }

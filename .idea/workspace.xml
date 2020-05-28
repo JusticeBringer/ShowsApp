@@ -9,7 +9,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/show/pao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/show/pao/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repositories/DatabaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repositories/DatabaseRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/DatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/DatabaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/ShowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ShowService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame$1.class" afterDir="false" />

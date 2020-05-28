@@ -2,6 +2,7 @@ package GUI.hostArea;
 
 import model.event.Show;
 import model.individual.Host;
+import service.AuditService;
 import service.ShowService;
 import service.UserService;
 
@@ -61,6 +62,7 @@ public class HostFrame extends JFrame {
     private static int showAfter = 0;
 
     private String showAllDetails = "";
+    private AuditService auditService = new AuditService();
 
     public HostFrame() {
         if (showAfter > 0){
@@ -101,6 +103,8 @@ public class HostFrame extends JFrame {
                 int showMoney = showService.returnShowCost(getNrShowNrToHost);
 
                 if (canHost){
+                    auditService.writeInAuditFile("Host successfully hosted a show", Thread.currentThread().getName());
+
                     // set new money amount of host
                     setUserMoney(getUserMoney() - showMoney);
                     insertMoney.setText("Your money: " + getUserMoney());
@@ -152,6 +156,7 @@ public class HostFrame extends JFrame {
                 }
                 else{
                     // show dialog that he cannot host
+                    auditService.writeInAuditFile("Host could not host event", Thread.currentThread().getName());
 
                     JPanel myPanel = new JPanel();
                     myPanel.setBounds(0, 0, 400, 50);
@@ -178,9 +183,47 @@ public class HostFrame extends JFrame {
 
                 ShowService showService = new ShowService();
 
-                boolean canCancel = showService.cancelShow(getHost(), getNrShowNrToCancel);
-                int showMoney = showService.returnShowCost(getNrShowNrToCancel);
+                showService.cancelShow(getHost(), getNrShowNrToCancel);
+                auditService.writeInAuditFile("Host is trying to cancel a show", Thread.currentThread().getName());
 
+                //Get the components in the panel
+                Component[] componentList = hostPanel.getComponents();
+
+                int nr = 0;
+
+                //Loop through the components
+                for(Component c : componentList){
+                    //Find the components you want to remove
+                    if(c instanceof JLabel){
+                        nr ++;
+
+                        if (nr < 7)
+                            continue;
+
+                        //Remove it
+                        hostPanel.remove(c);
+                    }
+                }
+
+                // all database updates are in actual service calls
+
+                setNewShowsAfterCancelledShow(getNrShowNrToCancel);
+
+                // make new text
+                for(int i = 0; i < st.size(); i ++){
+                    // set new text
+                    JLabel putShowText = new JLabel();
+
+                    // put updated text
+                    putShowText.setText(st.get(i));
+
+                    // add to panel
+                    hostPanel.add(putShowText);
+                }
+
+                // remake panel
+                hostPanel.revalidate();
+                hostPanel.repaint();
             }
         });
 
@@ -264,6 +307,14 @@ public class HostFrame extends JFrame {
 
     public void setShowsHostedOrNot() {
         this.showsHostedOrNot = new ArrayList<>();
+    }
+
+    public void setNewShowsAfterCancelledShow(int getNrShowNrToCancel){
+        for (int i = 0; i < st.size(); i++){
+            if (getNrShowNrToCancel == i){
+                st.remove(i);
+            }
+        }
     }
 
     // showHostedOrNot has shows hosted dynamic -> 1, 3 ...

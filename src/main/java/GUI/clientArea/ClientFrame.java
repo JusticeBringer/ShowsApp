@@ -2,6 +2,7 @@ package GUI.clientArea;
 
 import model.individual.Client;
 import model.structure.Theatre;
+import service.AuditService;
 import service.DatabaseService;
 import service.ShowService;
 import service.UserService;
@@ -26,7 +27,6 @@ public class ClientFrame extends JFrame {
     private String spaceVeryBig = spaceBig + " " + spaceMedium;
     private String showAllDetails = "";
 
-
     private String prShowName;
     private String prShowLocation;
 
@@ -34,10 +34,8 @@ public class ClientFrame extends JFrame {
     private JLabel clientArea = new JLabel("");
     private JLabel greetUser = new JLabel( "Welcome, ");
 
-
     private JLabel insertMoney = new JLabel("Your money: ");
     private JLabel showsAvailable = new JLabel( "List of shows: " + spaceVeryLittle);
-
 
     private JLabel buyTi = new JLabel("Buy ticket at show (insert show number) ");
     private JTextArea jTextArea = new JTextArea(1, 1);
@@ -54,7 +52,7 @@ public class ClientFrame extends JFrame {
     private int howManyShows = 0;
 
     private ArrayList<String> st = new ArrayList<>();
-
+    private AuditService auditService = new AuditService();
 
     public ClientFrame() {
         if (showAfter > 0){
@@ -96,6 +94,7 @@ public class ClientFrame extends JFrame {
                 int showMoney = showService.returnShowCost(getNrShowNrToBuy);
 
                 if (canBuy){
+                    auditService.writeInAuditFile("Client bought a ticket at a show.", Thread.currentThread().getName());
                     // set new money amount
                     setUserMoney(getUserMoney() - showMoney);
                     insertMoney.setText("Your money: " + getUserMoney());
@@ -105,7 +104,7 @@ public class ClientFrame extends JFrame {
                     userService.updateMoneyToClient(getClient().getClientId() , getUserMoney());
                 }
                 else{
-
+                    auditService.writeInAuditFile("Client tried to buy a ticket at a show.", Thread.currentThread().getName());
                     // show dialog that he cannot buy
 
                     JPanel myPanel = new JPanel();
@@ -137,6 +136,7 @@ public class ClientFrame extends JFrame {
                 int showMoney = showService.returnShowCost(getNrShowToRefund);
 
                 if(canRefund){
+                    auditService.writeInAuditFile("Client refunded a ticket", Thread.currentThread().getName());
                     // set new money amount
 
                     setUserMoney(getUserMoney() + showMoney);
@@ -148,7 +148,7 @@ public class ClientFrame extends JFrame {
 
                 }
                 else{
-
+                    auditService.writeInAuditFile("Client tried unsuccessfully to refund a ticket", Thread.currentThread().getName());
                     // show dialog that we cannot refund
 
                     JPanel myPanel = new JPanel();

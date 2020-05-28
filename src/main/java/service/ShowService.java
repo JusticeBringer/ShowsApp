@@ -15,6 +15,7 @@ import java.util.Map;
 public class ShowService {
 
     private DatabaseService databaseService;
+    private AuditService auditService;
 
     public ShowService() {
         databaseService = new DatabaseService();
@@ -33,7 +34,7 @@ public class ShowService {
             if (nr != count){
                 continue;
             }
-
+            auditService.writeInAuditFile("Preparing string to return show details", Thread.currentThread().getName());
 
             retSt +=  (nr)  + ". " + t.getShow().getTicket().getShowName() + " will be at " + t.getShow().getTicket().getShowLocation()
                     + " and hosted at " + t.getName() + " . ";
@@ -70,11 +71,14 @@ public class ShowService {
     }
 
     public int returnShowCost(Integer showNr){
+        auditService.writeInAuditFile("Returning show cost for a refund", Thread.currentThread().getName());
+
         List<Theatre> theatres = databaseService.getDBTheatres();
         return theatres.get(showNr).getShow().getTicket().getPrice();
     }
 
     public boolean buyTicket(Client client, Integer showToBuy) {
+        auditService.writeInAuditFile("Client is trying to buy a ticket for a show", Thread.currentThread().getName());
         List<Theatre> theatres = databaseService.getDBTheatres();
 
         int seatsAvailable = 0;
@@ -99,6 +103,7 @@ public class ShowService {
                     return false;
             }
         }
+        auditService.writeInAuditFile("Client did bought a ticket at show.", Thread.currentThread().getName());
 
         // we update client money
         client.setMoney(client.getMoney() - theatres.get(showToBuy).getShow().getTicket().getPrice());
@@ -124,10 +129,13 @@ public class ShowService {
         UserService userService = new UserService();
         userService.updateSeatsToShows(showToBuy + 1, theatres.get(showToBuy).getShow().getSeat().getNrSeats());
 
+        auditService.writeInAuditFile("Updated database for client and show seats", Thread.currentThread().getName());
         return true;
     }
 
     public boolean hostEvent(Host host, Integer showToHost) {
+        auditService.writeInAuditFile("A host is trying to host an event", Thread.currentThread().getName());
+
         List<Theatre> theatres = databaseService.getDBTheatres();
 
         int seatsAvailable = 0;
@@ -157,6 +165,7 @@ public class ShowService {
         //if event already hosted
         if (theatres.get(showToHost).getShow().getHasHost()) return false;
 
+        auditService.writeInAuditFile("Host did host an event", Thread.currentThread().getName());
 
         // we set the host of an event
         theatres.get(showToHost).getShow().setHasHost(true);
@@ -168,10 +177,14 @@ public class ShowService {
         //update host price
         host.setMoney(host.getMoney() - theatres.get(showToHost).getShow().getTicket().getPrice());
 
+        auditService.writeInAuditFile("Updated database for host", Thread.currentThread().getName());
+
         return true;
     }
 
     public boolean refundTicket(Client client, Integer showToRefund){
+        auditService.writeInAuditFile("Client is trying to refund a ticket", Thread.currentThread().getName());
+
         List<Theatre> theatres = databaseService.getDBTheatres();
 
         Map<String, Boolean> clientAttend = client.getShowsAttend();
@@ -204,6 +217,8 @@ public class ShowService {
             return false; //cant cancel ticket
         }
 
+        auditService.writeInAuditFile("Client did refund a ticket", Thread.currentThread().getName());
+
         //refund money to client
         client.setMoney(client.getMoney() + theatres.get(showToRefund).getShow().getTicket().getPrice());
 
@@ -227,6 +242,8 @@ public class ShowService {
     }
 
     public boolean cancelShow(Host host, int getNrShowNrToCancel) {
+        auditService.writeInAuditFile("Host is trying to cancel a show", Thread.currentThread().getName());
+
         List<Theatre> theatres = databaseService.getDBTheatres();
 
         Map<String, String> hostHosts = host.getShowsHost();
@@ -260,30 +277,25 @@ public class ShowService {
             return false; //cant cancel show
         }
 
+        auditService.writeInAuditFile("Host did cancel show", Thread.currentThread().getName());
+
         UserService userService = new UserService();
 
         //refund money to clients
         List<Client> clients = databaseService.getDBClients();
         for (Client client : clients){
-            Map<String, Boolean> clsAttend = client.getShowsAttend();
-            for (Map.Entry<String, Boolean> ent : clsAttend.entrySet()){
+            // refunding money to clients - Lack of database column with shows that client attends -> refund all clients
 
-                // if client is attending
-                if (ent.getKey().equals(theatres.get(getNrShowNrToCancel).getShow().getTicket().getShowName())
-                        && ent.getValue()){
+            client.setMoney(client.getMoney() + theatres.get(getNrShowNrToCancel).getShow().getTicket().getPrice());
+            // database update
+            userService.updateMoneyToClient(client.getClientId() , client.getMoney());
 
-                    client.setMoney(client.getMoney() + theatres.get(getNrShowNrToCancel).getShow().getTicket().getPrice());
-                    // database update
-                    userService.updateMoneyToClient(client.getClientId() , client.getMoney());
-                }
-            }
         }
 
         // refund money to host
         host.setMoney(host.getMoney() + theatres.get(getNrShowNrToCancel).getShow().getTicket().getPrice());
         // database update
         userService.updateMoneyToHost(host.getHostId(), host.getMoney());
-
 
         //and now deleting the show
         List<String> thHosts = theatres.get(getNrShowNrToCancel).getShowsHosted();
@@ -296,8 +308,18 @@ public class ShowService {
         //setting the new shows
         theatres.get(getNrShowNrToCancel).setShowsHosted(newShows);
 
-        // update database
-        
+        // update database for events
+
+        // delete from show
+        userService.deleteShowFromId(getNrShowNrToCancel);
+
+        // delete from ticket
+        userService.deleteTicketFromId(getNrShowNrToCancel);
+
+        // delete from theatre
+        userService.deleteTheatreFromId(getNrShowNrToCancel);
+
+        auditService.writeInAuditFile("Updated database after host cancelled the show", Thread.currentThread().getName());
 
         return false;
     }
