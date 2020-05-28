@@ -115,9 +115,21 @@ This project was based on given set of requirements (following is a Google trans
 
 ### Phase 1
 
+1. Definition of the system: 
+ a. To create a list based on the chosen topic with at least 10 actions / queries that can be done within the system and a list with at least 8 types of objects. 
+2. Implementation: to implement in the Java language an application based on those defined in point. The application will contain:. simple classes with private / protected attributes and access methods 
+ a. at least 2 different collections capable of managing previously defined objects (List, Set, Map, etc.) of which at least one to be sorted - uni arrays will be used - / two-dimensional in case the collections are not browsed until the checkpoint date. 
+ b. use inheritance for the creation of additional classes and their use in collections; 
+ c. at least one service class to display operations 
+ d. one main class from which calls to services are made
+
 ### Phase 2
 
+Extend the project from the first stage by achieving persistence using files. Csv type 1 files (comma separated values) will be made for at least 4 of the classes defined in the first stage. - generic singleton services will be performed for writing and reading from files - at the start of the program the data will be uploaded from the files using the services created 2. Performing an audit service - a service will be performed to write to a CSV file each time one of the actions described in the first stage is performed. File structure: action_name, timestamp
+
 ### Phase 3
+
+Replace the services performed in stage II with services that ensure persistence using the database using JDBC. - to perform services that expose operations such as create, read, update, delete for at least 4 of the defined classes - To create a graphical interface in which to display at least 5 of the initially defined actions. The interface will have at least 2 different screens that allow navigation between them. Swing or JSP will be used to create the graphical interface. Other frameworks can be used, but should be discussed beforehand in the laboratory. - Another column will be added to the file exported by the audit service: thread_name, representing the name of the thread that called the method.
 
 ## Technologies used
 
