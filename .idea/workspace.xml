@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b21fb044-0931-4ce4-9d2b-79d175a92bce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/GUI/clientArea/ClientFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GUI/hostArea/HostFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/howShould.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csvFiles/audit.csv" beforeDir="false" afterPath="$PROJECT_DIR$/csvFiles/audit.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/clientArea/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/clientArea/ClientFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/show/pao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/show/pao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/loginArea/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/loginArea/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/managers/DBConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/managers/DBConnectionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repositories/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/ShowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ShowService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/show/pao/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/show/pao/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/loginArea/LoginFrame$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/loginArea/LoginFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/repositories/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repositories/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/LoginService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/managers/DBConnectionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/managers/DBConnectionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/service/ShowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/ShowService.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +45,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -106,5 +108,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

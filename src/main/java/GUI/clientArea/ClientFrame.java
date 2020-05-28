@@ -1,12 +1,19 @@
 package GUI.clientArea;
 
+import model.individual.Client;
 import model.structure.Theatre;
+import service.ShowService;
+import service.UserService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ClientFrame extends JFrame {
+
+    private Client client;
 
     private String username;
     private Double userMoney = 0.0;
@@ -16,50 +23,36 @@ public class ClientFrame extends JFrame {
     private String spaceMedium = spaceLittle + " " + spaceLittle;
     private String spaceBig = spaceMedium + " " + spaceLittle;
     private String spaceVeryBig = spaceBig + " " + spaceMedium;
+    private String showAllDetails = "";
+
 
     private String prShowName;
     private String prShowLocation;
 
     private JPanel clientPanel = new JPanel(new FlowLayout());
-    private JLabel clientArea = new JLabel(spaceLittle + "             " + spaceMedium);
-    private JLabel greetUser = new JLabel(spaceLittle + "Welcome, ");
-    private JLabel newLine = new JLabel("<html><br><br><p></p></html>");
-    private JLabel newLine1 = new JLabel("<html><br><br><p></p></html>");
-    private JLabel newLine2 = new JLabel("<html><br><br><p></p></html>");
-    private JLabel newLine3 = new JLabel("<html><br><br><p></p></html>");
-    private JLabel newLine4 = new JLabel("<html><br><br><p></p></html>");
-    private JLabel newLine5 = new JLabel("<html><br><br><p></p></html>");
+    private JLabel clientArea = new JLabel("");
+    private JLabel greetUser = new JLabel( "Welcome, ");
 
-    private JLabel sp = new JLabel(spaceMedium);
-
-    private JLabel showName = new JLabel( spaceVeryBig + "\n\n . ");
-    private JLabel showCity = new JLabel(spaceMedium + "Show Name" + spaceVeryLittle + "Location");
-    private JLabel showTheatre = new JLabel(spaceVeryLittle + "Theatre");
-    private JLabel showPrice = new JLabel(spaceVeryLittle + "Price");
-    private JLabel showDate = new JLabel(spaceVeryLittle + "Date");
-    private JLabel showHost = new JLabel(spaceVeryLittle + "Host");
-    private JLabel showHostEmail = new JLabel(spaceVeryLittle + "Contact");
-    private JLabel showTickets = new JLabel(spaceVeryLittle + "Tickets");
-    private JLabel buyTi = new JLabel(spaceVeryLittle + "Buy ticket");
-
-    private JLabel endLine = new JLabel("<html><br/></html>", SwingConstants.CENTER);
 
     private JLabel insertMoney = new JLabel("Your money: ");
     private JLabel showsAvailable = new JLabel( "List of shows: " + spaceVeryLittle);
 
 
+    private JLabel buyTi = new JLabel("Buy ticket at show (insert show number) ");
+    private JTextArea jTextArea = new JTextArea(1, 1);
     private JButton buyTicket = new JButton("Buy ticket");
 
-    private JButton buyTicketFirst = new JButton("Buy ticket Show 1");
-    private JButton buyTicketSecond = new JButton("Buy ticket Show 2");
-    private JButton buyTicketThird = new JButton("Buy ticket Show 3");
-    private JButton buyTicketFourth = new JButton("Buy ticket Show 4");
-
-    private JTextArea jTextArea = new JTextArea(1, 1);
+    private JLabel refundTi = new JLabel("           Refund ticket at show (insert show number) ");
+    private JTextArea jTextArea2 = new JTextArea(1, 1);
+    private JButton refundTicket = new JButton("Refund ticket");
 
     private boolean canGoNext = false;
 
     private static int showAfter = 0;
+
+    private int howManyShows = 0;
+
+    private ArrayList<String> st = new ArrayList<>();
 
 
     public ClientFrame() {
@@ -75,54 +68,148 @@ public class ClientFrame extends JFrame {
 
         add(clientPanel);
         clientPanel.add(clientArea);
-
-        clientPanel.add(newLine);
-        greetUser.setText(greetUser.getText() + username + spaceLittle);
+        greetUser.setText(greetUser.getText() + username);
         clientPanel.add(greetUser, BorderLayout.LINE_START);
 
         insertMoney.setText(insertMoney.getText() + userMoney.toString());
         clientPanel.add(insertMoney);
 
-        clientPanel.add(newLine1);
-        clientPanel.add(newLine2);
-        clientPanel.add(newLine3);
-
+        showsAvailable.setText(showsAvailable.getText() + getShowAllDetails());
         clientPanel.add(showsAvailable, BorderLayout.BEFORE_LINE_BEGINS);
-        clientPanel.add(newLine4);
-        clientPanel.add(newLine5);
 
-
-        clientPanel.add(showName);
-        clientPanel.add(showCity);
-        clientPanel.add(showTheatre);
-        clientPanel.add(showPrice);
-        clientPanel.add(showDate);
-        clientPanel.add(showHost);
-        clientPanel.add(showHostEmail);
-        clientPanel.add(showTickets);
+        // add buy ticket
         clientPanel.add(buyTi);
-
-
         clientPanel.add(jTextArea);
+        clientPanel.add(buyTicket);
 
-        // add buy 4 buttons
-        clientPanel.add(buyTicketFirst);
-        clientPanel.add(buyTicketSecond);
-        clientPanel.add(buyTicketThird);
-        clientPanel.add(buyTicketFourth);
+        buyTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String getShowNrToBuy = jTextArea.getText();
+                int getNrShowNrToBuy = Integer.parseInt(getShowNrToBuy);
 
-        // first show
-        showName.setText(getPrShowName());
-        showCity.setText(getPrShowLocation());
+                ShowService showService = new ShowService();
 
-        clientPanel.add(showName);
-        clientPanel.add(showCity);
+                boolean canBuy = showService.buyTicket(getClient(), getNrShowNrToBuy);
+                int showMoney = showService.returnShowCost(getNrShowNrToBuy);
 
-        setSize(1400, 450);
+                if (canBuy){
+                    // set new money amount
+                    setUserMoney(getUserMoney() - showMoney);
+                    insertMoney.setText("Your money: " + getUserMoney());
+
+                    // execute update to database
+                    UserService userService = new UserService();
+                    userService.updateMoneyToClient(getClient().getClientId() , getUserMoney());
+
+
+                }
+                else{
+
+                    // show dialog that he cannot buy
+
+                    JPanel myPanel = new JPanel();
+                    myPanel.setBounds(0, 0, 400, 50);
+                    myPanel.setBackground(Color.WHITE);
+                    JOptionPane jop = new JOptionPane();
+                    JDialog dialog = jop.createDialog("Ticket already bought or no money");
+                    dialog.setSize(400, 50);
+                    dialog.setContentPane(myPanel);
+                    dialog.setVisible(true);
+                }
+            }
+        });
+
+        // add refund ticket
+        clientPanel.add(refundTi);
+        clientPanel.add(jTextArea2);
+        clientPanel.add(refundTicket);
+
+        refundTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String getShowNrToBuy = jTextArea.getText();
+                int getNrShowToRefund = Integer.parseInt(getShowNrToBuy);
+
+                ShowService showService = new ShowService();
+
+                boolean canRefund = showService.refundTicket(getClient(), getNrShowToRefund);
+                int showMoney = showService.returnShowCost(getNrShowToRefund);
+
+                if(canRefund){
+                    // set new money amount
+
+                    setUserMoney(getUserMoney() + showMoney);
+                    insertMoney.setText("Your money: " + getUserMoney());
+
+                    //execute update to database
+                    UserService userService = new UserService();
+                    userService.updateMoneyToClient(getClient().getClientId(), getUserMoney());
+
+                }
+                else{
+
+                    // show dialog that we cannot refund
+
+                    JPanel myPanel = new JPanel();
+                    myPanel.setBounds(0, 0, 400, 50);
+                    myPanel.setBackground(Color.WHITE);
+                    JOptionPane jop = new JOptionPane();
+                    JDialog dialog = jop.createDialog("Ticket already refunded or expired");
+                    dialog.setSize(400, 50);
+                    dialog.setContentPane(myPanel);
+                    dialog.setVisible(true);
+                }
+            }
+        });
+
+        for(int i = 0; i < getHowManyShows(); i ++){
+            JLabel putShowText = new JLabel();
+            putShowText.setText(st.get(i));
+
+            clientPanel.add(putShowText);
+        }
+
+        setSize(1700, 450);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setMoreShows(String showDet){
+        this.st.add(showDet);
+    }
+
+    public ArrayList<String> getSt() {
+        return st;
+    }
+
+    public void setSt(ArrayList<String> st) {
+        this.st = st;
+    }
+
+    public int getHowManyShows() {
+        return howManyShows;
+    }
+
+    public void setHowManyShows(int howManyShows) {
+        this.howManyShows = howManyShows;
+    }
+
+    public String getShowAllDetails() {
+        return showAllDetails;
+    }
+
+    public void setShowAllDetails(String showAllDetails) {
+        this.showAllDetails = showAllDetails;
+    }
 
     public String getPrShowName() {
         return prShowName;

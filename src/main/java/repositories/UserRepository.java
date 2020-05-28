@@ -82,4 +82,23 @@ public class UserRepository {
 
         return null;
     }
+
+    public void updateClientMoney(int clientID, double newMoneyValue){
+        String sql_qr = "UPDATE clients_data SET money = ? WHERE idclients_data = ?";
+
+        try (
+                Connection con = DBConnectionManager.getInstance().createConnection();
+                PreparedStatement statement = con.prepareStatement(sql_qr);
+        )
+
+        {
+            statement.setDouble(1, newMoneyValue);
+            statement.setInt(2, clientID);
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

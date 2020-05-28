@@ -53,11 +53,60 @@ public class ShowService {
         }
     }
 
-    public boolean buyTicket(Client client) throws FileNotFoundException {
+    public String showSendDetails(int count) {
+        List<Theatre> theatres = databaseService.getDBTheatres();
+        String retSt = "";
+        int nr = -1;
+
+        for (Theatre t :
+                theatres) {
+
+            nr ++;
+
+            if (nr != count){
+                continue;
+            }
+
+
+            retSt +=  (nr)  + ". " + t.getShow().getTicket().getShowName() + " will be at " + t.getShow().getTicket().getShowLocation()
+                    + " and hosted at " + t.getName() + " . ";
+            if (t.getShow().getHasHost()){
+
+                retSt += t.getShow().getTicket().getPrice() + "$ is this show ticket price. "
+                        + "Show Date: " + t.getShow().getTicket().getDay()
+                        + " " + t.getShow().getTicket().getMonth() + " " + t.getShow().getTicket().getYear()
+                        + ". " + t.getShow().getHost().getFirstName() + " " + t.getShow().getHost().getFamilyName()
+                        + " is organising the show. Contact him at this email address: "
+                        + t.getShow().getHost().getEmail();
+            }
+            else{
+                retSt += t.getShow().getTicket().getPrice() + "$ is this show ticket price. "
+                        + "Show Date: " + t.getShow().getTicket().getDay()
+                        + " " + t.getShow().getTicket().getMonth() + " " + t.getShow().getTicket().getYear();
+            }
+
+            int seatsAvailable = 0;
+            Map<Integer, Boolean> seats = t.getShow().getSeat().getAllSeats();
+            for (Map.Entry<Integer, Boolean> entry : seats.entrySet()) {
+                if( !entry.getValue()) seatsAvailable ++;
+            }
+
+            retSt += ". There are " + seatsAvailable + " available tickets. \n";
+
+        }
+        return retSt;
+    }
+
+    public int returnShowCost(Integer showNr){
+        List<Theatre> theatres = databaseService.getDBTheatres();
+        return theatres.get(showNr).getShow().getTicket().getPrice();
+    }
+
+    public boolean buyTicket(Client client, Integer showToBuy) {
         List<Theatre> theatres = databaseService.getDBTheatres();
 
         int seatsAvailable = 0;
-        Map<Integer, Boolean> seats = theatres.get(0).getShow().getSeat().getAllSeats();
+        Map<Integer, Boolean> seats = theatres.get(showToBuy).getShow().getSeat().getAllSeats();
         for (Map.Entry<Integer, Boolean> entry : seats.entrySet()) {
             if( !entry.getValue()) seatsAvailable ++;
         }
@@ -66,19 +115,27 @@ public class ShowService {
             return false;
         }
 
-        if(theatres.get(0).getShow().getTicket().getPrice() > client.getMoney()){
+        if(theatres.get(showToBuy).getShow().getTicket().getPrice() > client.getMoney()){
             return false;
         }
 
-        client.setMoney(client.getMoney() - theatres.get(0).getShow().getTicket().getPrice());
+        // we test if the client is not already attending the event
         Map<String, Boolean> shClient = client.getShowsAttend();
+        for (Map.Entry<String, Boolean> ent : shClient.entrySet()){
+            if (ent.getKey().equals(theatres.get(showToBuy).getShow().getTicket().getShowName())){
+                if(ent.getValue())
+                    return false;
+            }
+        }
+
+        client.setMoney(client.getMoney() - theatres.get(showToBuy).getShow().getTicket().getPrice());
 
         // we set client attending to event
-        shClient.put(theatres.get(0).getShow().getTicket().getShowName(), true);
+        shClient.put(theatres.get(showToBuy).getShow().getTicket().getShowName(), true);
         client.setShowsAttend(shClient);
 
         //update seats list
-        Map<Integer, Boolean> sts = theatres.get(0).getShow().getSeat().getAllSeats();
+        Map<Integer, Boolean> sts = theatres.get(showToBuy).getShow().getSeat().getAllSeats();
         for (Map.Entry<Integer, Boolean> ent : sts.entrySet()){
             //find first unnocupied seat and set to occupied
             if (!ent.getValue()){
@@ -122,7 +179,7 @@ public class ShowService {
         return true;
     }
 
-    public boolean cancelTicket(Client client) throws FileNotFoundException {
+    public boolean refundTicket(Client client, Integer showToRefund){
         List<Theatre> theatres = databaseService.getDBTheatres();
 
         Map<String, Boolean> clientAttend = client.getShowsAttend();
@@ -132,50 +189,49 @@ public class ShowService {
             return false;
         }
 
-        for (Map.Entry<String, Boolean> entry : clientAttend.entrySet()) {
-            for (Theatre theatre: theatres){
-                if (entry.getKey().equals(theatre.getShow().getTicket().getShowName())
-                        && entry.getValue()){
-                    //we see if the show has been already hosted
-                    Date date = new Date();
-
-                    SimpleDateFormat ft =
-                            new SimpleDateFormat ("yyyy MM dd");
-
-                    String eventDate = "";
-                    eventDate += theatre.getShow().getTicket().getYear() + " " + theatre.getShow().getTicket().getMonth()
-                            + " " + theatre.getShow().getTicket().getDay();
-
-                    // event already has been
-                    if (ft.format(date).compareTo(eventDate) >= 0){
-                        return false; //cant cancel ticket
-                    }
-
-                    //refund money to client
-                    client.setMoney(client.getMoney() + theatre.getShow().getTicket().getPrice());
-
-                    //update attendance list
-                    clientAttend.put(entry.getKey(), false);
-
-                    //update available seats
-                    theatre.getShow().getSeat().setNrSeats(theatre.getShow().getSeat().getNrSeats() + 1);
-
-                    //update seat list
-                    Map<Integer, Boolean> sts = theatre.getShow().getSeat().getAllSeats();
-                    for (Map.Entry<Integer, Boolean> ent : sts.entrySet()){
-                        //find first unnocupied seat and set to free
-                        if (ent.getValue()){
-                            sts.put(ent.getKey(), false);
-                            break;
-                        }
-                    }
-                    return true;
-                }
+        // we test if the client is not attending the event
+        for (Map.Entry<String, Boolean> ent : clientAttend.entrySet()){
+            if (ent.getKey().equals(theatres.get(showToRefund).getShow().getTicket().getShowName())){
+                if(!ent.getValue())
+                    return false;
             }
         }
 
+        //we see if the show has been already hosted
+        Date date = new Date();
 
-        return false;
+        SimpleDateFormat ft =
+                new SimpleDateFormat ("yyyy MM dd");
+
+        String eventDate = "";
+        eventDate += theatres.get(showToRefund).getShow().getTicket().getYear() + " " + theatres.get(showToRefund).getShow().getTicket().getMonth()
+                + " " + theatres.get(showToRefund).getShow().getTicket().getDay();
+
+        // event already has been
+        if (ft.format(date).compareTo(eventDate) >= 0){
+            return false; //cant cancel ticket
+        }
+
+        //refund money to client
+        client.setMoney(client.getMoney() + theatres.get(showToRefund).getShow().getTicket().getPrice());
+
+        //update attendance list
+        clientAttend.put(theatres.get(showToRefund).getShow().getTicket().getShowName(), false);
+
+        //update available seats
+        theatres.get(showToRefund).getShow().getSeat().setNrSeats(theatres.get(showToRefund).getShow().getSeat().getNrSeats() + 1);
+
+        //update seat list
+        Map<Integer, Boolean> sts = theatres.get(showToRefund).getShow().getSeat().getAllSeats();
+        for (Map.Entry<Integer, Boolean> ent : sts.entrySet()){
+            //find first unnocupied seat and set to free
+            if (ent.getValue()){
+                sts.put(ent.getKey(), false);
+                break;
+            }
+        }
+        return true;
+
     }
 
     public boolean cancelShow(Host host) throws FileNotFoundException {

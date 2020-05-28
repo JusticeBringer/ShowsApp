@@ -8,7 +8,7 @@ public class DBConnectionManager {
 
     public Connection createConnection() {
         try {
-            String url = "jdbc:mysql://localhost:3306/clients?useSSL=false";
+            String url = "jdbc:mysql://localhost:3306/pao?useSSL=false";
             String username = "root";
             String password = "1234";
 
