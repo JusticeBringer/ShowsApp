@@ -45,7 +45,7 @@ Except create, operations as read, update, delete were implemented.
 2. Update client money after refunding a ticket
 3. Update host money after hosting a show
 4. Update host money after cancelling a show
-5. Update clients money after show has been cancelled
+5. Update clients money after show has been cancelled (possible not working as intended)
 6. Update available seats after client buys ticket at a show
 7. Update available seats after client refunds a ticket at a show
 
@@ -63,3 +63,67 @@ The audit is a comma separated value (csv) file, with 3 columns:
 
 Every time a more important operation is made, it is reported in the audit.csv file. Example of its records can be seen [here](https://github.com/JusticeBringer/ShowsApp/blob/master/csvFiles/audit.csv).
  
+## Services classes
+
+For this specific project, following services classes have been used:
+
+1. Database Service - methods used to extract data from the database
+2. Login Service - methods used at the login panel
+3. User Service - methods used for tracking and implementing user actions
+4. Show Service - methods used for show related features
+5. Audit Service - one single method, used for writing in the audit file
+
+## GUI
+
+Following images refer to the GUI of the application.
+
+### GUI login panel
+
+...img...
+
+### GUI client panel
+
+...img...
+
+### GUI host panel
+
+...img...
+
+### GUI live demo
+
+...link video...
+
+## Database
+
+The database used in this application was MySQL version 8.0.20. Next images are about the tables clients and theatres. At last, a video about the database.
+
+### Clients table and queries used
+
+...img...
+
+### Theatres table and queries used
+
+...img...
+
+### Database video
+
+...videolink...
+
+## The requirements
+
+This project was based on given set of requirements (following is a Google translate text for the three phases)
+
+### Phase 1
+
+### Phase 2
+
+### Phase 3
+
+## Technologies used
+
+1. Java (vers. 11) + Java Swing for GUI
+2. MySQL (vers. 8.0.20)
+
+## Author
+
+Arghire Gabriel (me)
