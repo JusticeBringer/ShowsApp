@@ -89,7 +89,11 @@ Following images refer to the GUI of the application.
 
 ...img...
 
-### GUI live demo
+### GUI live client demo
+
+...link video...
+
+### GUI live host demo
 
 ...link video...
 
@@ -116,12 +120,12 @@ This project was based on given set of requirements (following is a Google trans
 ### Phase 1
 
 1. Definition of the system: 
- a. To create a list based on the chosen topic with at least 10 actions / queries that can be done within the system and a list with at least 8 types of objects. 
+  a. To create a list based on the chosen topic with at least 10 actions / queries that can be done within the system and a list with at least 8 types of objects. 
 2. Implementation: to implement in the Java language an application based on those defined in point. The application will contain:. simple classes with private / protected attributes and access methods 
- a. at least 2 different collections capable of managing previously defined objects (List, Set, Map, etc.) of which at least one to be sorted - uni arrays will be used - / two-dimensional in case the collections are not browsed until the checkpoint date. 
- b. use inheritance for the creation of additional classes and their use in collections; 
- c. at least one service class to display operations 
- d. one main class from which calls to services are made
+  a. at least 2 different collections capable of managing previously defined objects (List, Set, Map, etc.) of which at least one to be sorted - uni arrays will be used - / two-dimensional in case the collections are not browsed until the checkpoint date. 
+  b. use inheritance for the creation of additional classes and their use in collections; 
+  c. at least one service class to display operations 
+  d. one main class from which calls to services are made
 
 ### Phase 2
 
