@@ -94,11 +94,11 @@ https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/host_panel.JPG)
 
 ### GUI live client demo
 
-[![Client video](https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/login_panel.JPG)](https://youtu.be/jHRGMr7S12E)
+[Client video](https://youtu.be/jHRGMr7S12E)
 
 ### GUI live host demo
 
-[![Host video](https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/login_panel.JPG)](https://youtu.be/xDSXZJoinKM)
+[Host video](https://youtu.be/xDSXZJoinKM)
 
 ## Database
 
@@ -116,7 +116,7 @@ https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/theatres.JPG)
 
 ### Database video
 
-[![Database video](https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/theatres.JPG)](https://youtu.be/YsBKeAJrFLY)
+[Database video](https://youtu.be/YsBKeAJrFLY)
 
 ## The requirements
 
