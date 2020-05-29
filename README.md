@@ -79,23 +79,28 @@ Following images refer to the GUI of the application.
 
 ### GUI login panel
 
-...img...
+![Image of login panel](
+https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/login_panel.JPG)
 
 ### GUI client panel
 
-...img...
+![Image of client panel](
+https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/client_panel.JPG)
 
 ### GUI host panel
 
-...img...
+![Image of host panel](
+https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/host_panel.JPG)
 
 ### GUI live client demo
 
-...link video...
+![Client video](
+https://youtu.be/jHRGMr7S12E)
 
 ### GUI live host demo
 
-...link video...
+![Client video](
+https://youtu.be/xDSXZJoinKM)
 
 ## Database
 
@@ -103,15 +108,18 @@ The database used in this application was MySQL version 8.0.20. Next images are 
 
 ### Clients table and queries used
 
-...img...
+![Image of clients table and queries](
+https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/clients_data.JPG)
 
 ### Theatres table and queries used
 
-...img...
+![Image of theatres table and queries](
+https://github.com/JusticeBringer/ShowsApp/blob/master/appSS/theatres.JPG)
 
 ### Database video
 
-...videolink...
+![Database video](
+https://youtu.be/YsBKeAJrFLY)
 
 ## The requirements
 
