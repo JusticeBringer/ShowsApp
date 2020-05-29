@@ -183,8 +183,15 @@ public class HostFrame extends JFrame {
 
                 ShowService showService = new ShowService();
 
+                // set new money amount of host
+                int showMoney = showService.returnShowCost(getNrShowNrToCancel);
+
                 showService.cancelShow(getHost(), getNrShowNrToCancel);
                 auditService.writeInAuditFile("Host is trying to cancel a show", Thread.currentThread().getName());
+
+
+                setUserMoney(getUserMoney() + showMoney);
+                insertMoney.setText("Your money: " + getUserMoney());
 
                 //Get the components in the panel
                 Component[] componentList = hostPanel.getComponents();

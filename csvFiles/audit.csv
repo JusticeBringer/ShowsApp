@@ -1,0 +1,78 @@
+nume_actiune,data, nume_thread
+Extracting clients,Fri May 29 03:22:05 EEST 2020,main
+Getting clients from database,Fri May 29 03:22:05 EEST 2020,main
+Extracting hosts,Fri May 29 03:22:05 EEST 2020,main
+Getting hosts from database,Fri May 29 03:22:05 EEST 2020,main
+Extracting shows,Fri May 29 03:22:05 EEST 2020,main
+Getting shows from database,Fri May 29 03:22:05 EEST 2020,main
+Getting tickets from database,Fri May 29 03:22:05 EEST 2020,main
+Getting hosts from database,Fri May 29 03:22:05 EEST 2020,main
+Extracting theatres,Fri May 29 03:22:05 EEST 2020,main
+Getting theatres from database,Fri May 29 03:22:05 EEST 2020,main
+Getting shows from database,Fri May 29 03:22:05 EEST 2020,main
+Getting tickets from database,Fri May 29 03:22:05 EEST 2020,main
+Getting hosts from database,Fri May 29 03:22:05 EEST 2020,main
+Host trying to login,Fri May 29 03:22:33 EEST 2020,AWT-EventQueue-0
+Trying to find host by username,Fri May 29 03:22:33 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:22:33 EEST 2020,AWT-EventQueue-0
+Showing all shows to the host.,Fri May 29 03:22:34 EEST 2020,main
+Getting theatres from database,Fri May 29 03:22:34 EEST 2020,main
+Getting shows from database,Fri May 29 03:22:34 EEST 2020,main
+Getting tickets from database,Fri May 29 03:22:34 EEST 2020,main
+Getting hosts from database,Fri May 29 03:22:34 EEST 2020,main
+Getting theatres from database,Fri May 29 03:22:34 EEST 2020,main
+Getting shows from database,Fri May 29 03:22:34 EEST 2020,main
+Getting tickets from database,Fri May 29 03:22:34 EEST 2020,main
+Getting hosts from database,Fri May 29 03:22:34 EEST 2020,main
+Getting theatres from database,Fri May 29 03:22:34 EEST 2020,main
+Getting shows from database,Fri May 29 03:22:34 EEST 2020,main
+Getting tickets from database,Fri May 29 03:22:34 EEST 2020,main
+Getting hosts from database,Fri May 29 03:22:34 EEST 2020,main
+Getting theatres from database,Fri May 29 03:22:34 EEST 2020,main
+Getting shows from database,Fri May 29 03:22:34 EEST 2020,main
+Getting tickets from database,Fri May 29 03:22:34 EEST 2020,main
+Getting hosts from database,Fri May 29 03:22:34 EEST 2020,main
+Showing the GUI to the user.,Fri May 29 03:22:34 EEST 2020,main
+Getting theatres from database,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Getting shows from database,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Getting tickets from database,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Getting theatres from database,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Getting shows from database,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Getting tickets from database,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Host successfully hosted a show,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Updating a host money,Fri May 29 03:22:53 EEST 2020,AWT-EventQueue-0
+Getting theatres from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting shows from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting tickets from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting theatres from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting shows from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting tickets from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting clients from database,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Updating a client money,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Updating a client money,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Updating a client money,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Updating a client money,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Updating a host money,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Deleting a show from given id ...,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Deleting a ticket from given id ...,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Host is trying to cancel a show,Fri May 29 03:23:20 EEST 2020,AWT-EventQueue-0
+Getting theatres from database,Fri May 29 03:23:55 EEST 2020,AWT-EventQueue-0
+Getting shows from database,Fri May 29 03:23:55 EEST 2020,AWT-EventQueue-0
+Getting tickets from database,Fri May 29 03:23:55 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:23:55 EEST 2020,AWT-EventQueue-0
+Getting theatres from database,Fri May 29 03:23:57 EEST 2020,AWT-EventQueue-0
+Getting shows from database,Fri May 29 03:23:57 EEST 2020,AWT-EventQueue-0
+Getting tickets from database,Fri May 29 03:23:57 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:23:57 EEST 2020,AWT-EventQueue-0
+Getting theatres from database,Fri May 29 03:24:00 EEST 2020,AWT-EventQueue-0
+Getting shows from database,Fri May 29 03:24:00 EEST 2020,AWT-EventQueue-0
+Getting tickets from database,Fri May 29 03:24:00 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:24:00 EEST 2020,AWT-EventQueue-0
+Getting theatres from database,Fri May 29 03:24:01 EEST 2020,AWT-EventQueue-0
+Getting shows from database,Fri May 29 03:24:01 EEST 2020,AWT-EventQueue-0
+Getting tickets from database,Fri May 29 03:24:01 EEST 2020,AWT-EventQueue-0
+Getting hosts from database,Fri May 29 03:24:01 EEST 2020,AWT-EventQueue-0
