@@ -2,19 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b21fb044-0931-4ce4-9d2b-79d175a92bce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/appSS/client_panel.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appSS/clients_data.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appSS/host_panel.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appSS/login_panel.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appSS/reunf.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appSS/theatres.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appSS/ticket_bought.JPG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csvFiles/audit.csv" beforeDir="false" afterPath="$PROJECT_DIR$/csvFiles/audit.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/clientArea/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/clientArea/ClientFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GUI/hostArea/HostFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/hostArea/HostFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/show/pao/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/show/pao/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repositories/DatabaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repositories/DatabaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/LoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/ShowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ShowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/clientArea/ClientFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/hostArea/HostFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/hostArea/HostFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/hostArea/HostFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/hostArea/HostFrame$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/hostArea/HostFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/hostArea/HostFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/repositories/DatabaseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repositories/DatabaseRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/repositories/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repositories/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/LoginService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/service/ShowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/ShowService.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
